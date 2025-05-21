@@ -10,8 +10,7 @@ The data used in this work is available on the RENATES platform, which results f
 
 ### Prerequisites
 
-- Node.js (v14.0 or higher)
-- Instagram data export (request from your Instagram account settings)
+- Node.js
 
 ### Installation
 
