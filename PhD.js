@@ -74,8 +74,7 @@ class PhD {
 
     getInfo() {
         if (mouseX > this.pos[0] * gridModule && mouseX < this.pos[0] * gridModule + gridModule && mouseY > this.pos[1] * gridModule && mouseY < this.pos[1] * gridModule + gridModule) {
-            //console.log(this)
-            //image(img, 0, 0);
+            
             fill(0)
             rect(this.pos[0] * gridModule + 50, this.pos[1] * gridModule + 50, 200, 50);
             stroke(255)
@@ -96,7 +95,7 @@ class PhD {
     }
 
     drawDetailedPhD(pos) {
-        //background(30);
+    
 
         stroke(250);
         rect(pos[0], pos[1], detailSize, detailSize);
@@ -116,24 +115,20 @@ class PhD {
             this.painter(pos, ruleX, t, this.sexo);
         }
         let dim = this.bounding_box(this.housesGerais);
-        //console.log(dim, this.housesGerais)
-        //console.log(nomes, rules)
+        
 
         $("#defaultCanvas0 > svg:nth-child(1) > g:nth-child(3) > g:nth-child(26) > path:not(:first-child)").css('transform', 'translate(' + (250 - (dim[2] + dim[0] / 2)) + 'px, ' + (250 - (dim[3] + dim[1] / 2)) + 'px)');
 
-        //$("#defaultCanvas0 > svg:nth-child(1) > g:nth-child(3) > path").css('transform', 'translate('+(250-(dim[2]+dim[0]/2))+'px, '+(250-(dim[3]+dim[1]/2))+'px)');
+    
 
         fill(230);
         noStroke();
         textSize(8);
         text(this.nome + " - " + this.dominio, pos[0] + 20, pos[1] + detailSize - 40);
-        //text(this.universidade + " · " + this.ano, pos[0] + 20, pos[1] + detailSize - 30);
         text(this.titulo, pos[0] + 20, pos[1] + detailSize - 30);
         text(this.ano, pos[0] + 20, pos[1] + detailSize - 20);
 
-        //save("PhD" + i + ".svg");
-        //$("#defaultCanvas0 > svg:nth-child(1) > g:nth-child(3)").empty();  // PARA LIMPAR O SVG A CADA ITERAÇÃO
-
+    
     }
 
     ruler(rules, x, y) {

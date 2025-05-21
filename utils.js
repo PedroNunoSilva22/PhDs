@@ -207,11 +207,7 @@ function setupData() {
 
         } else { // ——————————————————————————————> NOT CREATED <——————————————————————————————
 
-            //console.log(univs[data[i].UnivPT][0], univs[data[i].UnivPT][1],i)
             universidades.push(new Universidade(univs[data[i].UnivPT][0], univs[data[i].UnivPT][1]));
-
-            //console.log(data[i].UnivPT, i)
-            //universidades.push(new Universidade(data[i].UnivPT, univs[data[i].UnivPT]));
 
             let novoPhD = new PhD(
                 data[i].Name,
@@ -279,7 +275,6 @@ function runGrouping() {
     }
     PHDstoGroup = PHDstoGroup.flat();
 
-    //console.log(PHDstoGroup);
     PHDstoGroup.sort((a, b) => a.ano - b.ano)
     
 
@@ -297,7 +292,6 @@ function runGrouping() {
         //yyy +=400;
 
         if (Array.isArray(grupos[keys])) {
-            console.log("1")
             groupPosition(grupos, keys, outSquare);
 
         } else {
@@ -308,7 +302,6 @@ function runGrouping() {
                 yy = 50;
 
                 if (Array.isArray(grupos[keys][keys2])) {
-                    console.log("2")
                     groupPosition(grupos[keys], keys2, outSquare)
 
                 } else {
@@ -327,14 +320,6 @@ function runGrouping() {
 function groupPosition(grupos, key, sqr) {
 
     let sqrtVal = round(Math.sqrt(sqr));
-    //console.log(key, sqr, sqrtVal, xxx);
-
-    /*if (xxx > 500) {
-        console.log("bigger")
-        xxx = 100;
-        xx = 0;
-        yyy += 400;
-    }*/
 
     for (val of grupos[key]) {
 
@@ -343,12 +328,6 @@ function groupPosition(grupos, key, sqr) {
             yy += 1;
         }
 
-        //text(keys, xxx * 10, 10 + xxx);
-        //text(keys2, xxx * 10, 20 + xxx);
-
-        //STATS GOES IN HERE
-
-        //val.drawPhD([xxx + xx, yyy/10 + yy]);
         val.groupingPos = [xxx + xx, yyy / 10 + yy];
         xx++;
 
@@ -418,20 +397,14 @@ function evolution() {
         if (data[p].Area == "-") continue;
         let c = dominios[data[p].Area][0];
         let r = dominios[data[p].Area][1];
-        //console.log(r);
-        //if (r == 2) continue;
-        //let c = dominios[data[p].dominio][0];
-        //let r = dominios[data[p].dominio][1];
+        
         stroke(c);
         x = x + inc * cos(r * TWO_PI / 6);
         y = y + inc * sin(r * TWO_PI / 6);
-        //console.log(x,y)
-        //line(x, y, x + inc * cos(r * TWO_PI / 7), y + inc * sin(r * TWO_PI / 7))
         line(x, y, px, py);
-        //circle(x,y,2);
         px = x;
         py = y;
-        //inc+=inc;
+        
     }
     //------------------------------------------------------------------------------------------------------
 

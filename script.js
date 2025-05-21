@@ -44,29 +44,17 @@ let port, reader;
 function setup() {
 
     createCanvas(9720+120, 1920+120, "P2D");
-    //createCanvas(windowWidth+120, windowHeight+120, "P2D");
+    
     background(30);
     ellipseMode(CORNER);
 
 
-    /*    noLoop();
-        ({ port, reader, writer } = await getPort());
-        loop();*/
-
-
-    //textFont('Courier');
-
     textFont(OCR);
     fill(255);
-    /*
-    text("Pedro Nuno Parreira e Silva - Ciências da Comunicação", 100, 100)
-    text("Universidade de Coimbra - 2023", 100, 120)
-    text("PEDRO NUNO PARREIRA E SILVA - CIÊNCIAS DA COMUNICAÇÃO", 900, 100)
-    text("UNIVERSIDADE DE COIMBRA - 2023", 900, 120)
-    */
+    
 
     textAlign(CENTER);
-    //textFont('Major Mono Display');
+   
     textFont(FK);
     textSize(200);
     text("PhDs - Portugal has Doctors!", 4860, 850)
@@ -77,12 +65,6 @@ function setup() {
 
     setupData();
 
-    //setupController();
-    //evolution();
-    //drawYears(year, dom);
-
-    //img = get();
-    //image(img, 0, 0);
 
 
 }
@@ -91,7 +73,6 @@ setInterval(skipper, 500);
 
 function draw() {
 
-    //drawGamepad();
 
 
     if (keyIsDown(UP_ARROW)) {
@@ -112,38 +93,9 @@ function draw() {
     }
 
     if (global) {
-        //------------------------ INFO CARDS GLOBAL MODE -----------------------------
-        /*for (let u = 0; u < universidades.length; u++) {
-            if (universidades[u].over()) {
-                for (let p = 0; p < universidades[u].activePhDs.length; p++) {
-                    universidades[u].activePhDs[p].getInfo();
-                }
-                break;
-            }//else image(img,0,0);
-        }*/
+  
     } else {
-
         universidades[univX].univXDrawDetails();
-
-
-        //------------------------ ARDUINO  ----------------------------------------
-        /*try {
-            while (true) {
-                const { value, done } = await reader.read();
-
-                if (done) {
-                    // Allow the serial port to be closed later.
-                    reader.releaseLock();
-                    break;
-                }
-                if (value == "69420") {
-                    // do something...
-                    console.log("nice");
-                }
-            }
-        } catch (e) { console.error(e) }*/
-
-        //------------------------ ARDUINO  ----------------------------------------
     }
 }
 
@@ -161,9 +113,6 @@ function drawYears(year, dom) {
 
     globalStats(dom);
 
-
-    //img = get();
-    //year++;
 }
 
 function globalStats(dom) {
@@ -184,10 +133,6 @@ function globalStats(dom) {
     statsGerais["Saúde"] = 0;
 
 
-    //TODO 1º FALTA METER A CENA PARA O GROUPING!!!
-
-    //TODO 1º E ULTIMO ANO DE DOUTORAMENTO PARA A UNIVERSIDADE?
-    //TODO AINDA QUERO FAZER OS STATS COM OS NUMEROS DO ANO!
 
 
     fill(250);
@@ -200,20 +145,13 @@ function globalStats(dom) {
     textSize(16);
 
 
-    //--------------- SCREENS ---------------
-    /*stroke(255, 0, 255);
-    noFill();
-    for (let e = 0; e < 9; e++) {
-        rect(e * 1080, 0, 1080, 1920)
-    }*/
-    //-------------------------------------
 
 
     for (let u = 0; u < universidades.length; u++) {
         for (let p = 0; p < universidades[u].activePhDs.length; p++) {
             let d = universidades[u].activePhDs[p];
 
-            // if (this.PhDs[i].ano <= year || year == undefined) {
+            
             if (d.dominioGeral == dom || dom == undefined) {
                 statsGerais.total++;
 
@@ -283,27 +221,21 @@ function globalStats(dom) {
 
     //------------------------------ HISTOGRAM DOMAINS ---------------------------------------------
     fill(colors[0])
-    //rect(8200, 1800, 20, -statsGerais["Artes e Humanidades"] / 50);
     rect(3302, 1822, 15, 15);
 
     fill(colors[1])
-    //rect(8230, 1800, 20, -statsGerais["Ciências Sociais e Direito"] / 50);
     rect(3302 + inc, 1822, 15, 15);
 
     fill(colors[2])
-    //rect(8260, 1800, 20, -statsGerais["Ciências e Matemática"] / 50);
     rect(3302 + inc * 2, 1822, 15, 15);
 
     fill(colors[3])
-    //rect(8290, 1800, 20, -statsGerais["Engenharias e Indústria"] / 50);
     rect(3302 + inc * 3, 1822, 15, 15);
 
     fill(colors[4])
-    //rect(8320, 1800, 20, -statsGerais["Agrária"] / 50);
     rect(3302 + inc * 4, 1822, 15, 15);
 
     fill(colors[5])
-    //rect(8350, 1800, 20, -statsGerais["Saúde"] / 50);
     rect(3302 + inc * 5, 1822, 15, 15);
 
     textSize(20);
@@ -315,9 +247,6 @@ function globalStats(dom) {
     text("(" + round(statsGerais["Engenharias e Indústria"] / statsGerais.total * 100) + "%)", 3330 + inc * 3, 1875);
     text("(" + round(statsGerais["Agrária"] / statsGerais.total * 100) + "%)", 3330 + inc * 4, 1875);
     text("(" + round(statsGerais["Saúde"] / statsGerais.total * 100) + "%)", 3330 + inc * 5, 1875);
-
-    //text("% of total PhDs", 8285, 1850);
-
 
     //------------------------------ HISTOGRAMA TOTAL PHDS ---------------------------------------------
 
@@ -463,12 +392,9 @@ function keyPressed() {
     // --------------------------------- GLOBAL/UNIQ -----------------------------------
     if ((key === 'g' || key === 'G') && !global) {
         global = !global;
-        console.log(global);
 
         if (global) {
-            console.log("drawing here")
             drawYears(year, dom);
-            //image(img, 0, 0);
         }
     }
 
@@ -483,7 +409,6 @@ function keyPressed() {
     } else if (keyCode === RIGHT_ARROW) {
         Ax = Ax + 5 * gridModule;
     }
-    console.log(Ax, Ay)
 
     // ---------------------------------------------------------------------------------
 
@@ -521,19 +446,15 @@ function keyPressed() {
 }
 
 function mousePressed() {
-    console.log("mouse is at: " + mouseX, mouseY)
 
     Ax = floor((mouseX - 1800) / (5 * gridModule)) * (5 * gridModule) + 1800;
     Ay = floor((mouseY - 180) / (5 * gridModule)) * (5 * gridModule) + 180;
 
-    console.log(Ax, Ay);
 
     for (let u = 0; u < universidades.length; u++) {
         if (universidades[u].over()) {
             global = false;
-
             background(30);
-            console.log(universidades[u]);
             univX = u;
         }
     }

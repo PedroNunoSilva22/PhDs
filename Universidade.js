@@ -50,12 +50,8 @@ class Universidade {
 
         for (let i = 0; i < this.activePhDs.length; i++) {
 
-            // if (this.PhDs[i].ano <= year || year == undefined) {
             if (this.PhDs[i].dominioGeral == dom || dom == undefined) {
-
-
                 this.activePhDs[i].drawPhD(this.PhDsPoints[i], "univ");
-
             }
 
             // }
@@ -89,10 +85,6 @@ class Universidade {
         text(ano, 1750, 31 * gridModule + y * 5 * gridModule);
 
         for (let p = 0; p < this.activePhDs.length; p++) {
-            /* if (x % 200 == 0 && x != 0) {
-                 x=0;
-                 y++;
-             }*/
 
             if (this.activePhDs[p].ano != ano) {
                 ano = this.activePhDs[p].ano;
@@ -102,7 +94,6 @@ class Universidade {
                 text(ano, 1750, 31 * gridModule + y * 5 * gridModule);
             }
             this.activePhDs[p].drawPhD([x % 200 * 5 + 300, 30 + y * 5]);
-            //this.activePhDs[p].drawPhD([x * 5 + 300, 30 + y * 5]);
             x++;
         }
 
@@ -110,12 +101,6 @@ class Universidade {
         noFill();
         rect(Ax - 7.5, Ay - 7.5, 20, 20);
 
-        //--------------- SCREENS ---------------
-        /*stroke(255, 0, 255);
-        noFill();
-        for (let e = 0; e < 9; e++) {
-            rect(e * 1080, 0, 1080, 1920)
-        }*/
 
         for (let p = 0; p < this.activePhDs.length; p++) {
             if (this.activePhDs[p].getPos(Ax, Ay)) {
@@ -126,39 +111,10 @@ class Universidade {
                 break;
             }
         }
-        //noLoop();
     }
 
     addBarrier(y) {
-        //console.log("novo ano para " + this.nome)
-
         this.barriers.push(this.frees);
-
-        //this.barriers.push({[y]: this.frees});
-
-        //this.frees = [];
-        //for (let b = 0; b < this.barriers[this.barriers.length - 1].length; b++) {
-        /*for (let f = 0; f < this.frees.length; f++) {
-
-            let newPos = this.getFree(this.frees[f][0], this.frees[f][1]);
-            console.log(newPos,newPos.length)
-
-            if (newPos.length > 0) {
-                this.newPos(newPos);
-                //console.log(this.pos, this.frees)
-                break;
-            }
-        }*/
-        //if (this.frees.length == 0) console.log("vai dar merda")
-
-        /*console.log(this.barriers)
-        this.frees = this.frees[this.frees.length-1];
-
-        this.pos = this.frees;
-        console.log(this.pos)
-        this.getFree(this.pos[0],this.pos[1])
-        this.newPos();*/
-
     }
 
 
@@ -193,9 +149,7 @@ class Universidade {
                     else if (this.activePhDs[i].dominioGeral == "Agrária") Agrarian++;
                     else if (this.activePhDs[i].dominioGeral == "Saúde") Health++;
                 }
-
             }
-
         }
     }
 
@@ -242,7 +196,6 @@ class Universidade {
         let count = 0;
         let newFrees = []
 
-        //if(x-1<0 || x+1>849 || y-1<0 || y+1>949)return;
         if (mode == 8 && grid[x - 1][y - 1] == 0) {                     // TOP-LEFT
             grid[x - 1][y - 1] = 1;
             this.frees.push([x - 1, y - 1]);
@@ -269,7 +222,6 @@ class Universidade {
             newFrees.push([x - 1, y]);
             count++;
         }
-
 
         if (grid[x + 1][y] == 0) {                                        //RIGHT
             grid[x + 1][y] = 1; //1;
@@ -298,21 +250,18 @@ class Universidade {
 
         this.frees = Array.from(new Set(this.frees.map(JSON.stringify)), JSON.parse);
 
-        //console.log(this.frees)
         return newFrees;
     }
 
     newPos(pos) {
         let newPos;
         if (pos != undefined) {
-            console.log(pos)
             this.pos = [pos[0][0], pos[0][1]];
-            console.log(this.pos)
+           
             pos.splice(0, 1);
             this.frees = pos;
         } else {
             newPos = round(random(this.frees.length - 1));
-            if (this.frees[newPos] == undefined) console.log(this.frees, newPos, this)
             this.pos = [this.frees[newPos][0], this.frees[newPos][1]];
             this.frees.splice(newPos, 1);
         }
